@@ -4,35 +4,40 @@ tom = User.create(
   first_name: "Tom",
   last_name: "Tobar",
   email: "tom@example.com",
-  password_digest: "tombomb",
+  password: "tombomb",
+  password_confirmation: "tombomb",
 )
 
 ash = User.create(
   first_name: "Ash",
   last_name: "Tobar",
   email: "ash@example.com",
-  password_digest: "mommytoad",
+  password: "mommytoad",
+  password_confirmation: "mommytoad",
 )
 
 kitty = User.create(
   first_name: "Kitty",
   last_name: "Tobar",
   email: "kitty@example.com",
-  password_digest: "kitty",
+  password: "kitty",
+  password_confirmation: "kitty",
 )
 
 buddy = User.create(
   first_name: "Buddy",
   last_name: "Tobar",
   email: "buddy@example.com",
-  password_digest: "buddybear",
+  password: "buddybear",
+  password_confirmation: "buddybear",
 )
 
 quinny = User.create(
   first_name: "Quinny",
   last_name: "Tobar",
   email: "quinny@example.com",
-  password_digest: "batgirl",
+  password: "batgirl",
+  password_confirmation: "batgirl",
 )
 
 tom.follow(ash)
