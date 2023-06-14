@@ -63,3 +63,14 @@ buddy.follow(quinny)
 quinny.follow(ash)
 quinny.follow(kitty)
 quinny.follow(buddy)
+
+
+User.all.each do |user|
+    rand(2..6).times do 
+        Blog.create(
+            user_id: user.id,
+            title: Faker::Book.title,
+            content: Faker::Lorem.paragraphs[0]
+        )
+    end
+end
