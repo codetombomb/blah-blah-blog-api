@@ -74,3 +74,4 @@ User.all.each do |user|
         )
     end
 end
+
