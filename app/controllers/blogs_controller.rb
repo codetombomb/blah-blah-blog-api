@@ -1,5 +1,4 @@
 class BlogsController < ApplicationController
-  skip_before_action :check_logged_in_user
 
   def index
     blogs = Blog.all

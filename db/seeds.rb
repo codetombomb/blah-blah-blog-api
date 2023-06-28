@@ -75,3 +75,13 @@ User.all.each do |user|
     end
 end
 
+# Randomly add like to blogs for each user in db
+Blog.all.each do |blog|
+  User.all.each do |user|
+    add_like = [true, false]
+    if blog.user_id != user.id && add_like.sample
+      Like.create(user_id: user.id, blog_id: blog.id)
+    end
+  end
+end
+
