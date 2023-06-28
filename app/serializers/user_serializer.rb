@@ -9,6 +9,12 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def following
-    self.object.followees
+    self.object.followees.map do |follow|
+      {
+        id: follow.id,
+        first_name: follow.first_name,
+        last_name: follow.last_name
+      }
+    end
   end
 end
