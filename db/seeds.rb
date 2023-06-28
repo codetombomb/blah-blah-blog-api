@@ -64,14 +64,21 @@ quinny.follow(ash)
 quinny.follow(kitty)
 quinny.follow(buddy)
 
+tags = Faker::Hipster.words(number: 20)
 
 User.all.each do |user|
     rand(2..6).times do 
-        Blog.create(
+        new_blog = Blog.create(
             user_id: user.id,
             title: Faker::Book.title,
             content: Faker::Lorem.paragraphs[0]
         )
+        rand(2..6).times do
+          new_tag = Tag.find_or_create_by(name: tags.sample)
+          if !BlogTag.find_by(blog_id: new_blog.id, tag_id: new_tag.id)
+            BlogTag.create(blog_id: new_blog.id, tag_id: new_tag.id)
+          end
+        end
     end
 end
 
@@ -79,6 +86,7 @@ end
 Blog.all.each do |blog|
   User.all.each do |user|
     add_like = [true, false]
+
     if blog.user_id != user.id && add_like.sample
       Like.create(user_id: user.id, blog_id: blog.id)
     end
