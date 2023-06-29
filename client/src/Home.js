@@ -6,12 +6,9 @@ function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    async function fetchBlogs(){
-      const resp = await fetch("/blogs")
-      const blogs = await resp.json()
-      setBlogs(blogs)
-    }
-    fetchBlogs()
+      fetch("/blogs")
+      .then(resp => resp.json())
+      .then(data => setBlogs(data))
   }, []);
 
   return <PreviewCardWrapper blogs={blogs} />;

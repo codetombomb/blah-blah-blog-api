@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
-    before_action(:check_logged_in_user)
+    before_action :check_logged_in_user
 
     def check_logged_in_user
       @current_user = User.find_by(id: session[:user_id])

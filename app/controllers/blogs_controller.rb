@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-
+  skip_before_action :check_logged_in_user, only: [:index, :show]
   def index
     blogs = Blog.all
     render json: blogs
