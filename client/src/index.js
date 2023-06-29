@@ -5,6 +5,7 @@ import Home from "./Home";
 import BlogShowPage from "./pages/BlogShowPage";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,8 @@ const router = createBrowserRouter([
   },
   {
     path: "blogs/:id",
-    element: <BlogShowPage />
+    element: <BlogShowPage />,
+    errorElement: <ErrorPage />
   }
 ]);
 

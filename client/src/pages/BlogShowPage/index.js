@@ -1,35 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import Tag from "../../components/Tag";
 
 function BlogShowPage() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [currentBlog, setCurrentBlog] = useState({
-    title: "",
     user: { first_name: "", last_name: "" },
+    tags: [],
+    title: "",
     content: "",
     num_likes: "",
     read_time: "",
   });
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetch(`/blogs/${id}`)
-        .then(resp => resp.json())
-        .then(blog => {
-            setCurrentBlog({...blog})
-            setIsLoading(false);
-        })
-    
-    // async function fetchBlog() {
-    //     const resp = await fetch(`/blogs/${id}`);
-    //     const blog = await resp.json();
-    //     setCurrentBlog(blog);
-    // }
-    // fetchBlog();
-    // setIsLoading(false);
-    // return () => {};
-}, [id]);
+      .then((resp) => resp.json())
+      .then((blog) => {
+        setCurrentBlog({ ...blog });
+        setIsLoading(false);
+      });
+  }, [id]);
 
   return (
     <>
@@ -45,6 +39,7 @@ function BlogShowPage() {
           <hr />
           <p>{currentBlog.num_likes} likes</p>
           <p>Read time: {currentBlog.read_time} mins</p>
+          {currentBlog.tags.map(({name}) => <Tag key={uuidv4()} name={name} />)}
         </div>
       )}
     </>
