@@ -2,6 +2,9 @@ class UsersController < ApplicationController
     def create
         user = User.create(user_params)
         if user && user.valid?
+            if params[:avatar] # Attach avatar
+                user.attach(params[:avatar])
+            end
             session[:user_id] = user.id #Logging a user
             render json: user, status: :created
         else
@@ -22,6 +25,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        params.permit(:first_name, :last_name, :email, :avatar, :password, :password_confirmation)
     end
 end

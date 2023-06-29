@@ -1,9 +1,12 @@
 import "./Home.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PreviewCardWrapper from "./wrappers/PreviewCardWrapper";
+import { CurrentUserContext } from "./context/currentUserContext";
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
+  const {currentUser} = useContext(CurrentUserContext)
+  console.log(currentUser)
 
   useEffect(() => {
       fetch("/blogs")

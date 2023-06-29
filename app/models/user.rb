@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
+  has_one_attached :avatar, dependent: :destroy
+  
+  scope :has_image, -> { joins(:image_attachment) }
+  scope :missing_image, -> { where.missing(:image_attachment) }
 
   has_many :blogs
   

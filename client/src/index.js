@@ -6,17 +6,29 @@ import BlogShowPage from "./pages/BlogShowPage";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
+import Signup from "./pages/authentication/Signup";
+import Login from "./pages/authentication/Login";
+import { CurrentUserContext } from "./context/currentUserContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "blogs/:id",
     element: <BlogShowPage />,
-    errorElement: <ErrorPage />
-  }
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
