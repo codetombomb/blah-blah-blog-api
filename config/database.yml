@@ -4,15 +4,13 @@
 #   gem install pg
 # On macOS with Homebrew:
 #   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
-# On macOS with MacPorts:
-#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
 # On Windows:
 #   gem install pg
 #       Choose the win32 build.
 #       Install PostgreSQL and put its /bin directory on your path.
 #
 # Configure Using Gemfile
-# gem 'pg'
+# gem "pg"
 #
 default: &default
   adapter: postgresql
@@ -25,13 +23,13 @@ development:
   <<: *default
   database: blah_blah_blog_api_development
 
-  # The specified database role being used to connect to postgres.
-  # To create additional roles in postgres see `$ createuser --help`.
-  # When left blank, postgres will use the default role. This is
+  # The specified database role being used to connect to PostgreSQL.
+  # To create additional roles in PostgreSQL see `$ createuser --help`.
+  # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
   #username: blah_blah_blog_api
 
-  # The password associated with the postgres role (username).
+  # The password associated with the PostgreSQL role (username).
   #password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -74,11 +72,13 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
+#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: blah_blah_blog_api_production
+  username: blah_blah_blog_api
+  password: <%= ENV["BLAH_BLAH_BLOG_API_DATABASE_PASSWORD"] %>
